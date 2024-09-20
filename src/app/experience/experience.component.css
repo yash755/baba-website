@@ -1,0 +1,42 @@
+.content {
+    padding: 16px;
+    margin-bottom: 100px;
+  }
+  
+  .content > mat-card {
+    width: 200px;
+
+  }
+
+  .mat-mdc-card {
+    margin: 5px;
+    position: relative;
+}
+
+.mat-mdc-card {
+    --mdc-elevated-card-container-shape: 10px;
+    /* border-radius: var(--mdc-elevated-card-container-shape);
+    background-color: var(--mdc-elevated-card-container-color); */
+    border-width: 2px;
+    border-style: solid;
+    border-color: blueviolet
+    /* border-color: var(--mdc-elevated-card-container-color);
+    box-shadow: var(--mdc-elevated-card-container-elevation); */
+}
+
+p {
+    text-align: right;
+    font-weight: 200;
+}
+
+
+div {
+    background-image: url("../../assets/demo_$56.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  
+}
+
+@media only screen and (max-width: 700px) {
+}

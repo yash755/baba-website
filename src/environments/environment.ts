@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://api.jaibabamohanram.in/',
+  apiUrl: 'https://www.api.joinpublicgroups.com/',
 };
 
 /*

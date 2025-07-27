@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://api.jaibabamohanram.in/',
+  apiUrl: 'https://api.jaibabamohanram.co.in/',
 };

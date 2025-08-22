@@ -1,4 +1,4 @@
-<div class="content">
+<!-- <div class="content">
     <div fxLayout="row wrap">
       <div fxFlex="auto" *ngFor="let experience of experiences">
         <mat-card class="mat-elevation-z4">
@@ -8,11 +8,105 @@
           <mat-card-content>
             <p><strong>{{experience.name}}</strong></p>
           </mat-card-content>
-          <!-- <mat-card-actions>
+          <mat-card-actions>
             <button mat-button>LIKE</button>
             <button mat-button>SHARE</button>
-          </mat-card-actions> -->
+          </mat-card-actions>
         </mat-card>
       </div>
     </div>
+  </div> -->
+
+<!-- Header (reuse your global header + nav if they are in app component) -->
+<header>
+  <h1>जय बाबा मोहन राम</h1>
+  <p>नीले घोड़े वाले बाबा का धाम, काली खोली</p>
+</header>
+
+<nav>
+  <a routerLink="/">🏠 Home</a>
+  <a routerLink="/aarti">आरती</a>
+  <a routerLink="/chalisa">चालीसा</a>
+  <a routerLink="/gallery">गैलरी</a>
+  
+</nav>
+
+<main>
+  <div class="wrap">
+    <div class="loader" *ngIf="loading">
+      <i class="fa fa-spinner fa-spin"></i> लोड हो रहा है…
+    </div>
+
+    <!-- Content -->
+    <div *ngIf="!loading">
+    <div class="page-head">
+      <h2>लोककथाएँ और चमत्कार</h2>
+
+      <!-- <div class="searchbar" role="search">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <input
+          type="search"
+          [ngModel]="query"
+          (ngModelChange)="onQueryChange($event)"
+          placeholder="किस्सा, स्थान, नाम या कीवर्ड खोजें…"
+        />
+        <button class="clear-btn" type="button" (click)="onQueryChange('')">साफ</button>
+      </div> -->
+    </div>
+
+    <div class="top-row">
+      <div class="count">कुल {{ total }} कथाएँ</div>
+
+      <div class="page-size">
+        <label for="pageSize">प्रति पृष्ठ:</label>
+        <select id="pageSize" [ngModel]="pageSize" (ngModelChange)="onPageSizeChange($event)">
+          <option *ngFor="let opt of pageSizeOptions" [value]="opt">{{ opt }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Stories grid -->
+    <section class="stories">
+      <article class="story" *ngFor="let s of paged; trackBy: trackByTitle">
+        <h3>{{ s.title }}</h3>
+
+       <p class="meta">
+  <span class="left">
+    <i class="fa fa-user"></i> {{ s.name }} &nbsp; | &nbsp;
+    <i class="fa fa-map-marker-alt"></i> {{ s.place }}
+  </span>
+  <span class="right">
+    <i class="fa fa-calendar"></i> {{ s.updated_at | date:'dd-MM-yyyy' }}
+  </span>
+</p>
+
+
+        <p class="excerpt">{{ s.excerpt }}</p>
+        <a class="read" [routerLink]="['/detail-story', s.title, s.id]">विस्तार से पढ़ें →</a>
+
+        <!-- bottom-right reads badge -->
+        <span class="reads"><i class="fa fa-eye"></i> {{ s.count | number:'1.0-0':'en-IN' }}</span>
+      </article>
+    </section>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button (click)="prev()" [disabled]="page === 1">पिछला</button>
+
+      <button
+        *ngFor="let n of pageNumbers"
+        (click)="goToPage(n)"
+        [class.active]="n === page">
+        {{ n }}
+      </button>
+
+      <button (click)="next()" [disabled]="page === totalPages">अगला</button>
+    </div>
   </div>
+  </div>
+</main>
+
+<!-- Mantra ticker + footer (optional here if global) -->
+  <footer>
+    <marquee>✨ जय बाबा मोहन राम ✨ जय बाबा मोहन राम ✨ जय बाबा मोहन राम ✨</marquee>
+  </footer>

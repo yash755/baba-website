@@ -1,68 +1,93 @@
-import { Component, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, HostListener, OnInit, inject, ChangeDetectorRef} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GalleryService } from '../service/gallery.service';
-import { Album } from '../model/album';
-import { GalleryModule, Gallery, GalleryRef, ImageItem, GalleryConfig } from 'ng-gallery';
-import { LightboxModule } from 'ngx-lightbox';
+
+
+type GalleryItem = {
+  main_url: string;        // image file (large enough for preview)
+  thumbnail_url?: string;     // optional smaller thumbnail (falls back to src)
+  alt?: string;
+  w?: number;         // optional original width (for future use)
+  h?: number;         // optional original height
+  credit?: string;    // optional caption/credit
+  udated_at?: string;
+};
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrl: './gallery.component.css',
-  standalone: true,
-  imports: [GalleryModule]
+  styleUrls: ['./gallery.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit {
+  // Masonry image list (mix sizes freely). Update paths to your assets.
+  images: GalleryItem[] = [
+  ];
+
+  // Lightbox state
+  previewOpen = false;
+  currentIndex = 0;
 
   route: ActivatedRoute = inject(ActivatedRoute);
   galleryService = inject(GalleryService);
-  album: Album[] = [];
-  
+  private cdr = inject(ChangeDetectorRef);
 
-
-  constructor(private gallery: Gallery) {}
-
-  ngOnInit() {
-    const galleryRef = this.gallery.ref('myGallery');
-
-    const config: GalleryConfig = {
-      autoPlay: true,
-      imageSize: 'contain',
-      dots: true,
-
-
-      
-    };
-
-    
-
-    this.galleryService.getGallery().subscribe({
+  ngOnInit(): void {
+        this.galleryService.getGallery().subscribe({
       next: (gal) => {
         if (gal) {
           if ('data' in gal) {
-            this.album = gal.data;
-            console.log(this.album);
-            for (let i=0; i<this.album.length; i++) {
-              galleryRef.addImage({ src: this.album[i].main_url, thumb: this.album[i].main_url });
-            }
-            // galleryRef.load([
-            //   new ImageItem({ src: "https://pixabay.com/get/gb74d0a513a3b2594e24072cd9a5c50a8f2e18948299c132816fd1744f14998eebb45aabac60c4dd534af6ec2a2e127db_1280.jpg", thumb: "https://cdn.pixabay.com/photo/2023/10/15/15/29/pumpkins-8317227_150.jpg" }),
-            //   new ImageItem({ src: "https://pixabay.com/get/gb74d0a513a3b2594e24072cd9a5c50a8f2e18948299c132816fd1744f14998eebb45aabac60c4dd534af6ec2a2e127db_1280.jpg", thumb: "https://cdn.pixabay.com/photo/2023/10/15/15/29/pumpkins-8317227_150.jpg" }),
-            //   // ... more items
-            // ]);
-            galleryRef.setConfig(config)
+            this.images = gal.data;
+            console.log(this.images);
+            this.cdr.markForCheck();
           }
         }
         
       },
       error: (error) => {
-        
+        this.cdr.markForCheck();
       },
     });
-
-    
-
   }
 
-}
+  
 
+  openPreview(i: number) {
+    this.currentIndex = i;
+    this.previewOpen = true;
+    // lock body scroll (optional)
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  closePreview() {
+    this.previewOpen = false;
+    document.documentElement.style.overflow = '';
+  }
+
+  next() {
+    if (!this.images.length) return;
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+  }
+
+  prev() {
+    if (!this.images.length) return;
+    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+  }
+
+  // Keyboard controls for accessibility
+  @HostListener('window:keydown', ['$event'])
+  onKeydown(e: KeyboardEvent) {
+    if (!this.previewOpen) return;
+    if (e.key === 'Escape') this.closePreview();
+    if (e.key === 'ArrowRight') this.next();
+    if (e.key === 'ArrowLeft') this.prev();
+  }
+
+  // convenience getters
+  get active(): GalleryItem | null {
+    return this.images[this.currentIndex] ?? null;
+  }
+
+  // Stop click propagation inside modal content
+  stop(e: Event) { e.stopPropagation(); }
+}

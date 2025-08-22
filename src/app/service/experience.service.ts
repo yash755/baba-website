@@ -17,4 +17,10 @@ export class ExperienceService {
     return this.http.get<any>(expURL);
 
   }
+
+  getDetailExperience(expereince_id: string): Observable<any> {
+    const expURL = global.BASE_URL + global.EXPERIENCE_URL + '/' + expereince_id;
+    return this.http.get<any>(expURL);
+
+  }
 }

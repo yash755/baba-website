@@ -1,4 +1,4 @@
-.content {
+/* .content {
     padding: 16px;
     margin-bottom: 100px;
   }
@@ -15,13 +15,9 @@
 
 .mat-mdc-card {
     --mdc-elevated-card-container-shape: 10px;
-    /* border-radius: var(--mdc-elevated-card-container-shape);
-    background-color: var(--mdc-elevated-card-container-color); */
     border-width: 2px;
     border-style: solid;
     border-color: blueviolet
-    /* border-color: var(--mdc-elevated-card-container-color);
-    box-shadow: var(--mdc-elevated-card-container-elevation); */
 }
 
 p {
@@ -39,4 +35,168 @@ div {
 }
 
 @media only screen and (max-width: 700px) {
+} */
+
+header{
+      background: linear-gradient(90deg, #1E3A8A, #F97316);
+      color:#fff; text-align:center; padding:20px 10px;
+    }
+    header h1{ margin:0; font-size:2rem }
+    header p{ margin:5px 0 10px; font-size:1.1rem }
+
+    /* Sticky nav (fixed at top; header scrolls away) */
+    nav{
+      position: sticky; position:-webkit-sticky; top:0; z-index:1000;
+      background:var(--red); padding:10px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,.08);
+    }
+    nav a{ color:#fff; margin:0 14px; font-weight:700; text-decoration:none }
+    nav a:hover{ text-decoration:underline }
+
+    main{ flex:1 }
+
+    /* Page wrap */
+    .wrap{ max-width:1100px; margin:18px auto 28px; padding:0 16px }
+
+    /* Heading row */
+    .page-head{
+      display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .page-head h2{ margin:0; color:var(--blue) }
+    .count{ font-size:.95rem; color:#444 }
+
+    /* Search bar */
+    .searchbar{
+      display:flex; gap:8px; align-items:center; width:100%; max-width:520px;
+      background:#fff; border-radius:10px; padding:8px 10px; box-shadow:0 2px 8px rgba(0,0,0,.06);
+    }
+    .searchbar i{ color:var(--red) }
+    .searchbar input{
+      border:none; outline:none; flex:1; font-size:1rem; background:transparent;
+    }
+    .clear-btn{
+      border:none; background:#eee; padding:6px 10px; border-radius:6px; cursor:pointer;
+    }
+
+    /* Story list */
+    .stories{
+      display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      margin-top:14px;
+    }
+    .story{
+      background:#fff; border-radius:12px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,.08);
+      display:flex; flex-direction:column; gap:8px;
+    }
+    .story h3{ margin:0; color:var(--blue); font-size:1.1rem }
+    /* .meta{ font-size:.85rem; color:#666 } */
+
+ .meta {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 4px 0 6px;
+  display: flex;
+  justify-content: space-between; /* ✅ pushes date to far right */
+  align-items: center;
+  gap: 6px;
+}
+
+.meta .left {
+  overflow: hidden;
+  text-overflow: ellipsis; /* ✅ trims only left section */
+  white-space: nowrap;
+}
+
+.meta .right {
+  flex-shrink: 0; /* ✅ date never shrinks or gets cut */
+  white-space: nowrap;
+}
+
+.meta i {
+  color: #B91C1C;
+  margin-right: 3px;
+}
+
+
+    .excerpt{ margin:0; line-height:1.6 }
+    .story a.read{
+      align-self:flex-start; margin-top:6px; background:var(--red); color:#fff; padding:8px 12px;
+      border-radius:8px; text-decoration:none; font-weight:700; transition:opacity .2s;
+    }
+    .story a.read:hover{ opacity:.9 }
+
+    /* Pagination */
+    .pagination{
+      display:flex; gap:6px; justify-content:center; align-items:center; margin-top:20px; flex-wrap:wrap;
+    }
+    .pagination button{
+      border:1px solid #ddd; background:#fff; padding:8px 12px; border-radius:8px; cursor:pointer;
+      min-width:38px;
+    }
+    .pagination button.active{ background:var(--blue); color:#fff; border-color:var(--blue) }
+    .pagination button:disabled{ opacity:.5; cursor:not-allowed }
+    .page-size{
+      margin-left:auto; display:flex; align-items:center; gap:8px; font-size:.95rem;
+    }
+    .page-size select{ padding:6px 8px; border-radius:8px; border:1px solid #ddd; background:#fff }
+
+    /* Footer (sticky at bottom) */
+    footer {
+      margin-top: 30px;
+      background-color: #1E3A8A;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    footer marquee {
+      color: #FFD700; /* golden text */
+      font-weight: bold;
+    }
+
+
+    /* compact one-line meta already present:
+.meta { font-size: 0.85rem; color: #555; margin: 4px 0 6px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+.meta i { color:#B91C1C; margin-right:3px; }
+*/
+
+/* Reads badge */
+.story {
+  position: relative; /* enable absolute positioning inside */
+  background:#fff;
+  border-radius:12px;
+  padding:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.story .reads {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  background: #F3F4F6;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #444;
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+.story .reads i {
+  color: #B91C1C; /* red accent */
+  margin-right: 2px;
+}
+
+.loader {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  color: #1E3A8A; /* same as your theme */
+}
+.fa-spinner {
+  margin-right: 8px;
 }

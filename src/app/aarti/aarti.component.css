@@ -1,4 +1,4 @@
-p {
+/* p {
     width: 100%;
     text-align: center;
     font-size: 3.5rem;
@@ -28,7 +28,7 @@ div {
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
-/* Styles */
+
 p {
     width: 100%;
     text-align: center;
@@ -39,4 +39,96 @@ p {
     padding-bottom: 100px;
     color: black;
 }
+} */
+
+    header {
+      background: linear-gradient(90deg, #1E3A8A, #F59E0B);
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    /* nav {
+      background-color: #B91C1C; 
+      padding: 10px;
+      text-align: center;
+    } */
+
+    nav {
+  position: sticky;           /* sticky behavior */
+  position: -webkit-sticky;   /* Safari */
+  top: 0;                     /* was 70px */
+  z-index: 1000;
+  background-color: #B91C1C;  /* keep the red background when stuck */
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* optional: adds a nice edge when stuck */
 }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      line-height: 1.8;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .content h2 {
+      color: #1E3A8A;
+      margin-bottom: 15px;
+      font-size: 3.1rem;
+    }
+
+    .content p {
+      margin: 8px 0;
+      font-size: 2.1rem;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: linear-gradient(90deg, #1E3A8A, #F59E0B);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .back-btn:hover {
+      opacity: 0.9;
+    }
+
+    footer {
+      margin-top: 30px;
+      background-color: #1E3A8A;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    footer marquee {
+      color: #FFD700; /* golden text */
+      font-weight: bold;
+    }

@@ -1,6 +1,4 @@
-
-
-/* Large desktop */
+/* 
 @media (min-width: 1200px) {
 
 .custom{
@@ -8,7 +6,6 @@
 }
  }
  
-/* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) { 
 
 .custom{
@@ -16,15 +13,111 @@
 }
  }
  
-/* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
     
  }
  
-/* Landscape phones and down */
 @media (max-width: 480px) { 
     .custom
     {
     height: 620px;
 } 
+} */
+
+:root{
+  --blue:#1E3A8A; --saff:#F97316; --red:#B91C1C; --cream:#FFF7E6; --ink:#1C1917;
+}
+
+*{ box-sizing:border-box }
+body{ margin:0; font-family:Arial, sans-serif; background:var(--cream); color:var(--ink); }
+
+/* Header + sticky nav (same theme) */
+header{
+  background: linear-gradient(90deg, var(--blue), var(--saff));
+  color:#fff; text-align:center; padding:20px 10px;
+}
+header h1{ margin:0; font-size:2rem }
+header p{ margin:6px 0 10px; font-size:1.05rem }
+
+nav{
+  position: sticky; top:0; z-index:1000; background:var(--red);
+  padding:10px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+nav a{ color:#fff; margin:0 14px; font-weight:700; text-decoration:none }
+nav a:hover{ text-decoration:underline }
+
+main{ min-height:60vh }
+.wrap{ max-width:1200px; margin:18px auto 28px; padding:0 16px; }
+.page-title{ margin:0; color:var(--blue); }
+.page-sub{ margin:6px 0 12px; color:#444; }
+
+/* Masonry layout using CSS columns */
+.masonry{
+  column-count: 1;
+  column-gap: 16px;
+}
+@media (min-width:600px){ .masonry{ column-count: 2; } }
+@media (min-width:900px){ .masonry{ column-count: 3; } }
+@media (min-width:1200px){ .masonry{ column-count: 4; } }
+
+.item{
+  break-inside: avoid;
+  margin: 0 0 16px;
+  display: inline-block; /* needed in column layout */
+  width: 100%;
+  background:#fff; border-radius:12px; overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+.item img{
+  width:100%; height:auto; display:block; cursor: zoom-in;
+}
+.item figcaption{
+  padding:8px 10px; font-size:0.9rem; color:#333;
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+}
+.item figcaption .alt{ font-weight:600; color:#1f2937; }
+.item figcaption .credit{ color:#6b7280; }
+
+/* Lightbox / preview */
+.lightbox{
+  position: fixed; inset: 0; background: rgba(0,0,0,.8);
+  display:flex; align-items:center; justify-content:center; z-index: 2000;
+}
+.lightbox-inner{
+  position: relative; max-width: 92vw; max-height: 92vh;
+  display: grid; grid-template-rows: auto auto; gap: 10px;
+}
+.preview-img{
+  max-width: 92vw; max-height: 80vh; object-fit: contain; border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  background:#111;
+}
+.close{
+  position:absolute; top:-10px; right:-10px; width:36px; height:36px;
+  border:none; border-radius:50%; background:#fff; color:#111; font-size:22px; cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+.nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:44px; height:44px; border:none; border-radius:50%;
+  background:rgba(255,255,255,.9); color:#111; font-size:26px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+.nav.prev{ left:-56px; }
+.nav.next{ right:-56px; }
+@media (max-width: 700px){
+  .nav.prev{ left:8px; }
+  .nav.next{ right:8px; }
+}
+
+.caption{
+  display:flex; align-items:center; justify-content:space-between; color:#f3f4f6;
+  font-size:0.95rem; gap:10px;
+}
+.caption-text{ max-width: 80%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.count{ opacity:.85 }
+
+footer{ background:var(--blue); color:#fff; text-align:center; padding:0; }
+footer marquee{
+  display:block; background:var(--saff); color:#fff; font-weight:700; padding:8px;
 }

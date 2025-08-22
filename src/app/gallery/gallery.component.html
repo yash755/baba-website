@@ -1,3 +1,72 @@
-<gallery class="custom" id="myGallery"></gallery>
+<!-- <gallery class="custom" id="myGallery"></gallery> -->
+
+<!-- Header -->
+<header>
+  <h1>जय बाबा मोहन राम</h1>
+  <p>नीले घोड़े वाले बाबा का धाम, काली खोली</p>
+</header>
+
+<!-- Sticky nav -->
+<nav>
+
+<a routerLink="/">🏠 Home</a>
+  <a routerLink="/aarti">आरती</a>
+  <a routerLink="/chalisa">चालीसा</a>
+  <a routerLink="/experience">अनुभव</a>
+</nav>
+
+<main>
+  <div class="wrap">
+    <h2 class="page-title">गैलरी</h2>
+    <p class="page-sub">धाम, अखंड ज्योति, आरती और भक्तिमय क्षणों की झलकियाँ</p>
+
+    <!-- Masonry grid -->
+    <section class="masonry">
+      <figure class="item" *ngFor="let img of images; let i = index">
+        <img
+          [src]="img.thumbnail_url || img.main_url"
+          [alt]="img.alt"
+          loading="lazy"
+          decoding="async"
+          (click)="openPreview(i)"
+        />
+        <figcaption *ngIf="img.alt || img.credit">
+          <span class="alt">{{ img.alt }}</span>
+          <span class="credit" *ngIf="img.credit"> · {{ img.credit }}</span>
+        </figcaption>
+      </figure>
+    </section>
+  </div>
+</main>
+
+<!-- Preview / Lightbox -->
+<div class="lightbox" *ngIf="previewOpen" (click)="closePreview()">
+  <div class="lightbox-inner" (click)="stop($event)">
+    <button class="close" (click)="closePreview()" aria-label="बंद करें">×</button>
+
+    <button class="nav prev" (click)="prev()" aria-label="पिछला">‹</button>
+    <img
+      class="preview-img"
+      [src]="active?.main_url"
+      [alt]="active?.alt || 'Image preview'"
+      loading="eager"
+    />
+    <button class="nav next" (click)="next()" aria-label="अगला">›</button>
+
+    <div class="caption">
+      <!-- <div class="caption-text">
+        <strong>{{ active?.alt }}</strong>
+        <span *ngIf="active?.credit"> · {{ active?.credit }}</span>
+      </div> -->
+      <div class="count">{{ currentIndex + 1 }} / {{ images.length }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <marquee>✨ जय बाबा मोहन राम ✨ जय बाबा मोहन राम ✨ जय बाबा मोहन राम ✨</marquee>
+</footer>
+
 
 

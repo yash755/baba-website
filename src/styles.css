@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFF7E6; /* Cream background */
+    color: #1C1917;
+}
+
+:root{
+      --blue:#1E3A8A;    /* header/footer */
+      --saff:#F97316;    /* saffron accent */
+      --red:#B91C1C;     /* nav + buttons */
+      --cream:#FFF7E6;   /* page bg */
+      --ink:#1C1917;     /* text */
+    }

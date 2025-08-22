@@ -5,6 +5,7 @@ import { ChalisaComponent } from './chalisa/chalisa.component';
 import { InfoComponent } from './info/info.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ExperienceComponent } from './experience/experience.component';
+import { DetailStoryComponent } from './detail-story/detail-story.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'info', pathMatch: 'full' },
@@ -25,7 +26,12 @@ const routes: Routes = [
   { 
     path: 'experience', 
     component: ExperienceComponent 
-  }
+  },
+  { 
+    path: 'detail-story/:title/:id', 
+    component: DetailStoryComponent 
+  },
+  { path: '**', redirectTo: 'info' }
 ];
 
 @NgModule({

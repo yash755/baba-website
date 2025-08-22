@@ -1,4 +1,4 @@
-.head_1 {
+/* .head_1 {
     text-align: center;
     font-size: 2.5rem;
     margin-top: 0;
@@ -43,4 +43,185 @@ and (max-device-width : 480px) {
         width: fit-content;
     }
 
+} */
+
+
+
+    header {
+      background: linear-gradient(90deg, #1E3A8A, #F97316); /* Blue + Saffron */
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      margin: 5px 0 10px;
+      font-size: 1.2rem;
+    }
+
+    /* nav {
+      background-color: #B91C1C;
+      padding: 10px;
+      text-align: center;
+      position: sticky;
+      top: 70px;
+      z-index: 1000;
+    } */
+
+    nav {
+  position: sticky;           /* sticky behavior */
+  position: -webkit-sticky;   /* Safari */
+  top: 0;                     /* was 70px */
+  z-index: 1000;
+  background-color: #B91C1C;  /* keep the red background when stuck */
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* optional: adds a nice edge when stuck */
+}
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: #B91C1C; /* Accent Red */
+    }
+
+    .card h3 {
+      margin: 10px 0;
+      color: #1E3A8A; /* Royal Blue */
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #1C1917;
+    }
+
+
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    footer {
+      background-color: #1E3A8A;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      /* margin-top: 20px; */
+      position: relative;
+    }
+
+    marquee {
+      background: #F97316;
+      color: white;
+      font-weight: bold;
+      padding: 8px;
+      font-size: 1.1rem;
+    }
+
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+
+main {
+      flex: 1; /* Push footer down */
+    }
+
+    
+
+    /* Section heading + rich content formatting */
+.section-title{
+  margin: 24px 0 10px;
+  color: #1E3A8A;           /* same royal blue */
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-align: left;
+}
+
+.content-rich{
+  padding: 0 20px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.content-rich p{ margin: 8px 0; }
+
+.content-rich .msg{
+  background: #F3F4F6;
+  padding: 12px;
+  border-left: 4px solid #1E3A8A;
+  font-style: italic;
+  margin: 8px 0 14px;
+}
+
+.content-rich .confessions{
+  padding-left: 18px;
+  margin: 6px 0 18px;
+}
+.content-rich .confessions li{ margin: 6px 0; }
+
+
+.btn-wrap {
+  margin: 12px 0 20px;
+  text-align: center;  /* centers the button */
+}
+
+.btn {
+  display: inline-block;
+  background: #B91C1C;   /* same red as nav */
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #8A1313;   /* darker red on hover */
 }

@@ -1,0 +1,60 @@
+<header>
+  <h1>जय बाबा मोहन राम</h1>
+  <p>नीले घोड़े वाले बाबा का धाम, काली खोली</p>
+</header>
+
+<nav>
+  <a routerLink="/">🏠 Home</a>
+  <a routerLink="/aarti">आरती</a>
+  <a routerLink="/chalisa">चालीसा</a>
+  <a routerLink="/gallery">गैलरी</a>
+  <a routerLink="/experience">अनुभव</a>
+</nav>
+
+<main>
+  <div class="wrap">
+    <!-- Story Header -->
+  <div class="loader" *ngIf="loading">
+      <i class="fa fa-spinner fa-spin"></i> लोड हो रहा है…
+    </div>
+
+    <!-- Content -->
+    <div *ngIf="!loading">
+    <div class="story-head">
+      <h2>{{ story.title }}</h2>
+      <div class="meta">
+        <span><i class="fa fa-user"></i> लेखक: {{ story.name }}</span>
+        <span>·</span>
+        <span><i class="fa fa-map-marker-alt"></i> स्थान: {{ story.place }}</span>
+        <span>·</span>
+        <span><i class="fa fa-calendar"></i> तिथि: {{ formatDate(story.created_at) }}</span>
+
+        <span class="reads"><i class="fa fa-eye"></i> {{ story.count| number:'1.0-0':'en-IN' }}</span>
+      </div>
+    </div>
+
+    <article class="story-body">
+      <p>{{ story.experience }}</p>
+
+      <div class="share" aria-label="Share this story">
+        <button class="btn" type="button" (click)="share()">
+          <i class="fa fa-share-nodes"></i> शेयर
+        </button>
+        <button class="btn" type="button" (click)="copyLink()">
+          <i class="fa fa-link"></i> लिंक कॉपी
+        </button>
+        <small class="copy-status" *ngIf="copyStatus">{{ copyStatus }}</small>
+      </div>
+    </article>
+
+    <div class="pn">
+      <a *ngIf="story.prev_link" [routerLink]="story.prev_link">← पिछली कथा</a>
+      <a *ngIf="story.next_link" [routerLink]="story.next_link">अगली कथा →</a>
+    </div>
+  </div>
+  </div>
+</main>
+
+<footer>
+  <marquee>✨ जय बाबा मोहन राम ✨ जय बाबा मोहन राम ✨ जय बाबा मोहन राम ✨</marquee>
+</footer>

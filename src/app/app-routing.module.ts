@@ -12,9 +12,8 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'info', pathMatch: 'full' },
-
-  { path: 'info', component: InfoComponent },
+  { path: '', component: InfoComponent },
+  { path: 'info', redirectTo: '', pathMatch: 'full' },
   { path: 'aarti', component: AartiComponent },
   { path: 'chalisa', component: ChalisaComponent },
   { path: 'gallery', component: GalleryComponent },
@@ -24,7 +23,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'disclaimer', component: DisclaimerComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
-  { path: '**', redirectTo: 'info' }
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

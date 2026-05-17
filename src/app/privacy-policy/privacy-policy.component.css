@@ -1,0 +1,7 @@
+.policy-page { max-width: 800px; margin: 0 auto; padding: 24px 16px 60px; font-family: inherit; line-height: 1.7; }
+h1 { font-size: 1.6rem; margin-bottom: 4px; }
+.updated { color: #888; font-size: 0.85rem; margin-bottom: 24px; }
+h2 { font-size: 1.15rem; margin-top: 28px; }
+p, ul { margin: 8px 0; }
+ul { padding-left: 20px; }
+a { color: #1a73e8; }

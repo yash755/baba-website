@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, HostListener, OnInit, inject, ChangeDetectorRef} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GalleryService } from '../service/gallery.service';
+import { SeoService } from '../service/seo.service';
 
 
 type GalleryItem = {
@@ -31,9 +32,15 @@ export class GalleryComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
   galleryService = inject(GalleryService);
   private cdr = inject(ChangeDetectorRef);
+  private seo = inject(SeoService);
 
   ngOnInit(): void {
-        this.galleryService.getGallery().subscribe({
+    this.seo.update({
+      title: 'गैलरी | काली खोली धाम की तस्वीरें — जय बाबा मोहन राम',
+      description: 'काली खोली धाम और बाबा मोहन राम के मंदिर की तस्वीरें देखें। भक्तों के दर्शन, पूजा और धाम के दृश्य।',
+      keywords: 'काली खोली धाम गैलरी, बाबा मोहन राम फोटो, Kali Kholi mandir, gallery',
+    });
+    this.galleryService.getGallery().subscribe({
       next: (gal) => {
         if (gal) {
           if ('data' in gal) {
@@ -55,13 +62,16 @@ export class GalleryComponent implements OnInit {
   openPreview(i: number) {
     this.currentIndex = i;
     this.previewOpen = true;
-    // lock body scroll (optional)
-    document.documentElement.style.overflow = 'hidden';
+    if (typeof document !== 'undefined') {
+      document.documentElement.style.overflow = 'hidden';
+    }
   }
 
   closePreview() {
     this.previewOpen = false;
-    document.documentElement.style.overflow = '';
+    if (typeof document !== 'undefined') {
+      document.documentElement.style.overflow = '';
+    }
   }
 
   next() {

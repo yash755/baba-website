@@ -1,11 +1,12 @@
-import { Component, OnInit,inject, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Experience } from '../model/experience';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { CommonModule,DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ExperienceService } from '../service/experience.service';
 import { RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { SeoService } from '../service/seo.service';
 
 interface StoryDetail {
   slug?: string;
@@ -54,9 +55,8 @@ export class DetailStoryComponent implements OnInit {
   comments: CommentItem[] = [];
 
   route: ActivatedRoute = inject(ActivatedRoute);
-  
   experienceService = inject(ExperienceService);
-
+  private seo = inject(SeoService);
   private cdr = inject(ChangeDetectorRef);
   loading = true; 
   id = '';
@@ -74,7 +74,13 @@ export class DetailStoryComponent implements OnInit {
       next: (exp) => {
         if ('data' in exp) {
         this.story = exp.data;
-        this.loading = false;  
+        this.loading = false;
+        const desc = (this.story.experience ?? '').replace(/<[^>]*>/g, '').slice(0, 150);
+        this.seo.update({
+          title: `${this.story.title} — बाबा मोहन राम का चमत्कार`,
+          description: desc || `${this.story.title} — बाबा मोहन राम के भक्त की सच्ची कहानी।`,
+          keywords: `${this.story.title}, बाबा मोहन राम, भक्त अनुभव, चमत्कार`,
+        });
         this.cdr.markForCheck();
         this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
@@ -100,9 +106,9 @@ export class DetailStoryComponent implements OnInit {
 
 
   private scrollTop() {
-    // If your main content is a container, target it instead of window
-    // this.document.querySelector('main')?.scrollTo({ top: 0, behavior: 'smooth' });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   // === Share / Copy ===

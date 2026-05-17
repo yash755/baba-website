@@ -1,0 +1,31 @@
+.site-footer {
+  background: #1a1a2e;
+  color: #ccc;
+  padding: 24px 16px;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9rem;
+}
+
+.site-footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  margin-bottom: 12px;
+}
+
+.site-footer .footer-links a {
+  color: #aac4ff;
+  text-decoration: none;
+}
+
+.site-footer .footer-links a:hover {
+  text-decoration: underline;
+}
+
+.site-footer .footer-copy {
+  color: #888;
+  font-size: 0.82rem;
+  margin-top: 8px;
+}

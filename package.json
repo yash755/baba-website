@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "node scripts/generate-sitemap.mjs && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:baba-wesbite": "node dist/baba-wesbite/server/server.mjs"
+    "serve:ssr": "node dist/baba-wesbite/server/server.mjs",
+    "serve:ssr:baba-wesbite": "node dist/baba-wesbite/server/server.mjs",
+    "generate-sitemap": "node scripts/generate-sitemap.mjs"
   },
   "private": true,
   "dependencies": {
